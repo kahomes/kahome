@@ -5,63 +5,117 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Thuê Phòng | KA Homes</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     
     <style>
-        :root { --primary: #0066ff; --primary-hover: #0052cc; --dark: #0f172a; --text-muted: #64748b; --bg-light: #f8fafc; }
-        body { font-family: 'Inter', sans-serif; background-color: var(--bg-light); color: #334155; }
+        :root {
+            --primary: #2563eb;
+            --primary-dark: #1d4ed8;
+            --secondary: #f59e0b;
+            --dark: #0f172a;
+            --light: #f8fafc;
+            --muted: #64748b;
+            --radius-lg: 24px;
+            --radius-md: 16px;
+            --shadow-sm: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            --shadow-lg: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+        }
+        
+        body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: var(--light); color: #334155; }
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-thumb { background: var(--primary); border-radius: 10px; }
 
-        /* --- Global Navbar --- */
-        .navbar { background: #fff !important; box-shadow: 0 4px 20px rgba(0,0,0,0.04); padding: 12px 0; }
-        .nav-link { font-weight: 600; color: var(--dark) !important; margin: 0 12px; position: relative; transition: 0.3s; }
-        .navbar-brand { font-weight: 800; color: var(--primary) !important; font-size: 28px; letter-spacing: -0.5px; }
-        .nav-link::after { content: ''; position: absolute; width: 0; height: 2px; bottom: -5px; left: 50%; background-color: var(--primary); transition: 0.3s ease; transform: translateX(-50%); }
+        /* --- Navbar Default (Trắng) --- */
+        .navbar { background: #fff !important; box-shadow: var(--shadow-sm); padding: 12px 0; border-bottom: 1px solid #f1f5f9; }
+        .navbar-brand { font-weight: 800; font-size: 28px; color: var(--primary) !important; display: flex; align-items: center; gap: 8px; }
+        .nav-link { font-weight: 600; color: var(--dark) !important; margin: 0 15px; position: relative; transition: 0.3s; }
+        .nav-link::after { content: ''; position: absolute; width: 0; height: 3px; bottom: -5px; left: 50%; background: var(--primary); transition: 0.3s ease; transform: translateX(-50%); border-radius: 2px; }
         .nav-link:hover::after, .nav-item.active .nav-link::after { width: 100%; }
-        .btn-custom { background: var(--primary); color: white; border-radius: 10px; padding: 10px 24px; font-weight: 600; transition: all 0.3s ease; border: none; }
-        .btn-custom:hover { background: var(--primary-hover); transform: translateY(-2px); box-shadow: 0 8px 20px rgba(0, 102, 255, 0.2); color: white; }
+        
+        .btn-gradient { background: linear-gradient(135deg, var(--primary), #3b82f6); color: white !important; border-radius: 12px; padding: 10px 24px; font-weight: 700; transition: 0.3s; border: none; box-shadow: 0 10px 15px -3px rgba(37, 99, 235, 0.3); }
+        .btn-gradient:hover { transform: translateY(-3px); box-shadow: 0 20px 25px -5px rgba(37, 99, 235, 0.4); }
 
-        /* --- Sidebar & Cards --- */
-        .sidebar-filter { background: #fff; border-radius: 20px; padding: 25px; box-shadow: 0 4px 15px rgba(0,0,0,0.02); position: sticky; top: 100px; border: 1px solid #f1f5f9; }
-        .property-card { background: #fff; border-radius: 20px; overflow: hidden; border: 1px solid #f1f5f9; transition: all 0.3s ease; margin-bottom: 30px; }
-        .property-card:hover { transform: translateY(-8px); box-shadow: 0 20px 30px rgba(0,0,0,0.08); }
-        .property-img-wrapper { position: relative; overflow: hidden; height: 250px; }
-        .property-img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s ease; }
-        .property-card:hover .property-img { transform: scale(1.05); }
-        .property-badge { position: absolute; top: 15px; left: 15px; background: rgba(255, 255, 255, 0.95); color: var(--dark); padding: 6px 12px; border-radius: 8px; font-size: 13px; font-weight: 700; z-index: 2; }
-        .badge-status { left: auto; right: 15px; background: #10b981; color: white; }
-        .price-tag { color: var(--primary); font-size: 1.4rem; font-weight: 800; }
-        .amenities { display: flex; justify-content: space-between; border-top: 1px solid #f1f5f9; padding-top: 15px; margin-top: 15px; }
-        .amenities span { font-size: 0.9rem; color: var(--text-muted); font-weight: 500; }
-        .amenities i { color: var(--primary); margin-right: 6px; }
+        /* --- Sidebar --- */
+        .sidebar-filter { background: #fff; border-radius: var(--radius-md); padding: 25px; box-shadow: var(--shadow-sm); border: 1px solid #f1f5f9; position: sticky; top: 100px; }
+        .filter-title { font-weight: 800; font-size: 1.1rem; color: var(--dark); margin-bottom: 15px; display: flex; align-items: center; gap: 8px; }
+        .custom-control-label { cursor: pointer; color: #475569; font-weight: 600; }
+        .custom-checkbox .custom-control-input:checked~.custom-control-label::before { background-color: var(--primary); border-color: var(--primary); border-radius: 4px; }
+        .custom-checkbox .custom-control-label::before { border-radius: 4px; border: 2px solid #cbd5e1; top: 0.15rem; width: 1.2rem; height: 1.2rem; }
+        .custom-checkbox .custom-control-label::after { top: 0.15rem; width: 1.2rem; height: 1.2rem; }
 
-        /* --- Floating Contact --- */
-        .floating-contact { position: fixed; bottom: 30px; right: 30px; z-index: 999; display: flex; flex-direction: column; gap: 15px; }
-        .float-btn { width: 55px; height: 55px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 24px; color: white; box-shadow: 0 4px 15px rgba(0,0,0,0.2); transition: 0.3s; text-decoration: none; }
+        .range-slider-wrapper { padding: 10px 0; }
+        input[type=range] { -webkit-appearance: none; width: 100%; background: transparent; }
+        input[type=range]::-webkit-slider-thumb { -webkit-appearance: none; height: 20px; width: 20px; border-radius: 50%; background: var(--primary); cursor: pointer; margin-top: -8px; box-shadow: 0 2px 6px rgba(0,0,0,0.2); }
+        input[type=range]::-webkit-slider-runnable-track { width: 100%; height: 6px; cursor: pointer; background: #e2e8f0; border-radius: 10px; }
+
+        /* --- Property Card (Grid) --- */
+        .property-card { background: #fff; border-radius: var(--radius-md); overflow: hidden; box-shadow: var(--shadow-sm); transition: 0.4s ease; border: 1px solid #f1f5f9; position: relative; margin-bottom: 30px; }
+        .property-card:hover { transform: translateY(-8px); box-shadow: var(--shadow-lg); border-color: rgba(37,99,235,0.2); }
+        .property-img-wrap { position: relative; height: 240px; overflow: hidden; }
+        .property-img { width: 100%; height: 100%; object-fit: cover; transition: 0.7s; }
+        .property-card:hover .property-img { transform: scale(1.1); }
+        
+        .badge-location { position: absolute; top: 16px; left: 16px; background: rgba(255,255,255,0.95); color: var(--dark); padding: 6px 12px; border-radius: 8px; font-weight: 700; font-size: 12px; z-index: 2; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+        .badge-status { position: absolute; top: 16px; right: 16px; color: #fff; padding: 6px 12px; border-radius: 8px; font-weight: 700; font-size: 12px; z-index: 2; }
+        
+        .btn-heart { position: absolute; bottom: -20px; right: 24px; width: 44px; height: 44px; border-radius: 50%; background: #fff; display: flex; align-items: center; justify-content: center; color: #cbd5e1; font-size: 18px; box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1); z-index: 3; transition: 0.3s; cursor: pointer; border: none; }
+        .btn-heart:hover, .btn-heart.active { color: #ef4444; transform: scale(1.15); }
+        
+        .btn-quickview { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%) scale(0.9); opacity: 0; background: rgba(255,255,255,0.95); font-weight: 700; border-radius: 20px; padding: 10px 20px; border: none; transition: 0.3s; z-index: 5; pointer-events: none; color: var(--dark); }
+        .property-img-wrap:hover .btn-quickview { opacity: 1; transform: translate(-50%, -50%) scale(1); pointer-events: auto; }
+        .btn-quickview:hover { background: var(--primary); color: white; }
+
+        .price { color: var(--primary); font-size: 1.4rem; font-weight: 800; display: flex; align-items: baseline; gap: 4px; }
+        .price span { font-size: 0.9rem; font-weight: 500; color: var(--muted); }
+        .amenities { display: flex; gap: 16px; padding-top: 16px; margin-top: 16px; border-top: 1px dashed #e2e8f0; }
+        .amenity-item { display: flex; align-items: center; gap: 6px; font-size: 0.85rem; font-weight: 700; color: var(--muted); }
+        .amenity-item i { color: var(--primary); }
+
+        /* --- List View --- */
+        .list-view .property-card { display: flex; flex-direction: row; height: 240px; }
+        .list-view .property-img-wrap { width: 35%; height: 100%; flex-shrink: 0; }
+        .list-view .card-body { padding: 25px !important; display: flex; flex-direction: column; justify-content: center; width: 65%; }
+
+        .view-controls .btn { background: #fff; border: 1px solid #e2e8f0; color: #94a3b8; border-radius: 8px; font-size: 18px; padding: 6px 12px; }
+        .view-controls .btn.active { background: rgba(37,99,235,0.1); color: var(--primary); border-color: var(--primary); }
+
+        /* --- Quick View Modal --- */
+        .modal-content { border-radius: 24px; border: none; overflow: hidden; box-shadow: var(--shadow-lg); }
+        .modal-header { border-bottom: none; position: absolute; right: 0; z-index: 10; padding: 15px; }
+        .modal-header .close { background: white; border-radius: 50%; width: 40px; height: 40px; opacity: 1; box-shadow: var(--shadow-sm); }
+
+        /* --- Floating Actions --- */
+        .floating-group { position: fixed; bottom: 30px; right: 30px; z-index: 999; display: flex; flex-direction: column; gap: 15px; }
+        .float-btn { width: 56px; height: 56px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 24px; color: white; box-shadow: 0 10px 25px rgba(0,0,0,0.2); transition: 0.3s; text-decoration: none; }
+        .float-btn.zalo { background: #0068ff; }
+        .float-btn.call { background: #10b981; }
         .float-btn:hover { transform: scale(1.1); color: white; }
-        .btn-zalo { background: #0068ff; }
-        .btn-call { background: #10b981; }
 
-        /* --- Global Footer --- */
-        .footer_section { background: #0f172a; padding: 60px 0 20px; margin-top: 40px;}
-        .footer_menu ul li a { display: inline-block; transition: 0.3s ease; text-decoration: none; color: #94a3b8; }
-        .footer_menu ul li a:hover { color: var(--primary); transform: translateX(5px); }
+        /* --- Footer --- */
+        .footer { background: var(--dark); color: #94a3b8; padding: 60px 0 20px; margin-top: 60px; }
+        .footer-title { color: #fff; font-weight: 700; margin-bottom: 24px; font-size: 1.2rem; }
+        .footer-links { list-style: none; padding: 0; margin: 0; }
+        .footer-links li { margin-bottom: 12px; }
+        .footer-links a { color: #94a3b8; text-decoration: none; transition: 0.3s; display: inline-block; }
+        .footer-links a:hover { color: var(--primary); transform: translateX(8px); }
     </style>
 </head>
 <body>
     <nav class="navbar navbar-expand-lg sticky-top">
         <div class="container">
-            <a class="navbar-brand" href="index.html"><i class="fas fa-cube mr-2"></i>KA Homes</a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav">
-                <span class="navbar-toggler-icon"></span>
+            <a class="navbar-brand" href="index.html"><i class="fa-solid fa-building-user"></i> KA Homes</a>
+            <button class="navbar-toggler border-0" type="button" data-toggle="collapse" data-target="#navbarNav">
+                <i class="fa-solid fa-bars" style="font-size: 24px;"></i>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ml-auto align-items-center">
                     <li class="nav-item"><a class="nav-link" href="index.html">Trang chủ</a></li>
                     <li class="nav-item active"><a class="nav-link" href="listings.html">Thuê Phòng</a></li>
                     <li class="nav-item"><a class="nav-link" href="blog.html">Tin tức</a></li>
-                    <li class="nav-item ml-lg-3 mt-3 mt-lg-0">
-                        <a class="btn btn-custom" href="#">Ký gửi phòng</a>
+                    <li class="nav-item ml-lg-4 mt-3 mt-lg-0">
+                        <a class="btn btn-gradient" href="#"><i class="fa-solid fa-key mr-2"></i>Ký gửi phòng</a>
                     </li>
                 </ul>
             </div>
@@ -71,94 +125,122 @@
     <div class="container mt-5">
         <div class="row">
             <div class="col-lg-3 mb-4">
-                <div class="sidebar-filter">
+                <div class="sidebar-filter" data-aos="fade-right">
                     <div class="d-flex justify-content-between align-items-center mb-4">
-                        <h5 class="font-weight-bold m-0"><i class="fas fa-sliders-h mr-2"></i>Bộ Lọc BĐS</h5>
+                        <h4 class="font-weight-bold m-0" style="color: var(--dark);"><i class="fa-solid fa-filter mr-2"></i>Bộ Lọc</h4>
+                        <a href="#" class="small text-danger font-weight-bold" style="text-decoration: underline;">Xóa</a>
                     </div>
                     
-                    <h6 class="font-weight-bold mb-3">Khu Vực</h6>
-                    <select class="form-control mb-4" style="border-radius: 10px; height: 45px;">
-                        <option>Tất cả</option>
+                    <h6 class="filter-title">Khu Vực</h6>
+                    <select class="form-control mb-4 bg-light border-0" style="border-radius: 12px; height: 48px; font-weight: 600;">
+                        <option>Tất cả Hà Nội</option>
                         <option>Thanh Xuân</option>
                         <option>Đống Đa</option>
                     </select>
 
-                    <h6 class="font-weight-bold mb-3">Loại Hình</h6>
+                    <h6 class="filter-title">Khoảng Giá <small class="text-muted ml-auto font-weight-normal" id="priceLabel">3 - 15 Triệu</small></h6>
+                    <div class="range-slider-wrapper mb-4">
+                        <input type="range" min="3" max="25" value="15" oninput="document.getElementById('priceLabel').innerText = 'Dưới ' + this.value + ' Triệu'">
+                    </div>
+
+                    <h6 class="filter-title">Loại Hình</h6>
                     <div class="mb-4">
-                        <div class="custom-control custom-checkbox mb-2">
+                        <div class="custom-control custom-checkbox mb-3">
                             <input type="checkbox" class="custom-control-input" id="t1" checked>
-                            <label class="custom-control-label font-weight-normal" for="t1">Studio</label>
+                            <label class="custom-control-label" for="t1">Phòng Studio</label>
                         </div>
-                        <div class="custom-control custom-checkbox mb-2">
+                        <div class="custom-control custom-checkbox mb-3">
                             <input type="checkbox" class="custom-control-input" id="t2" checked>
-                            <label class="custom-control-label font-weight-normal" for="t2">Căn hộ 1 Phòng Ngủ</label>
+                            <label class="custom-control-label" for="t2">Căn hộ 1 Phòng Ngủ</label>
                         </div>
-                        <div class="custom-control custom-checkbox mb-2">
-                            <input type="checkbox" class="custom-control-input" id="t3" checked>
-                            <label class="custom-control-label font-weight-normal" for="t3">Căn hộ 2 Phòng Ngủ</label>
+                        <div class="custom-control custom-checkbox mb-3">
+                            <input type="checkbox" class="custom-control-input" id="t3">
+                            <label class="custom-control-label" for="t3">Căn hộ 2 Phòng Ngủ</label>
                         </div>
                     </div>
 
-                    <button class="btn btn-custom w-100 py-2">Lọc Kết Quả</button>
+                    <button class="btn btn-gradient w-100 py-3">Áp Dụng Tìm Kiếm</button>
                 </div>
             </div>
 
             <div class="col-lg-9">
-                <h4 class="font-weight-bold mb-4">Danh sách phòng đang trống</h4>
+                <div class="d-flex flex-wrap justify-content-between align-items-center mb-4 pb-2 border-bottom">
+                    <h5 class="font-weight-bold m-0 mb-3 mb-md-0">Hiển thị <span class="text-primary">24</span> kết quả</h5>
+                    
+                    <div class="d-flex align-items-center gap-3">
+                        <select class="form-control bg-light border-0 mr-3" style="border-radius: 10px; width: auto; font-weight: 600;">
+                            <option>Sắp xếp: Mới nhất</option>
+                            <option>Giá tăng dần</option>
+                            <option>Giá giảm dần</option>
+                        </select>
+                        <div class="view-controls btn-group">
+                            <button class="btn active" id="btn-grid"><i class="fa-solid fa-border-all"></i></button>
+                            <button class="btn" id="btn-list"><i class="fa-solid fa-list"></i></button>
+                        </div>
+                    </div>
+                </div>
                 
-                <div class="row">
-                    <div class="col-md-6">
-                        <div class="card property-card">
-                            <div class="property-img-wrapper">
-                                <span class="property-badge"><i class="fas fa-map-marker-alt text-primary mr-1"></i>Thanh Xuân</span>
-                                <span class="property-badge badge-status">Mới</span>
+                <div class="row" id="property-container">
+                    <div class="col-md-6 item-col" data-aos="fade-up">
+                        <div class="property-card">
+                            <div class="property-img-wrap">
+                                <span class="badge-location"><i class="fa-solid fa-location-dot text-primary mr-1"></i>Thanh Xuân</span>
+                                <span class="badge-status bg-primary">Mới Update</span>
                                 <img src="https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?ixlib=rb-4.0.3" class="property-img">
+                                <button class="btn-heart" onclick="toggleHeart(this)"><i class="fa-solid fa-heart"></i></button>
+                                <button class="btn-quickview" data-toggle="modal" data-target="#quickViewModal"><i class="fa-solid fa-eye mr-2"></i>Xem Nhanh</button>
                             </div>
-                            <div class="card-body p-4">
+                            <div class="card-body p-4 mt-2">
                                 <h5 class="font-weight-bold text-truncate mb-2">Studio Hiện Đại Bùi Xương Trạch</h5>
-                                <p class="text-muted small mb-3"><i class="fas fa-location-arrow mr-2"></i>41 Bùi Xương Trạch, Thanh Xuân, Hà Nội</p>
-                                <div class="price-tag mb-2">4.500.000đ<span style="font-size: 14px; color: var(--text-muted); font-weight: 500;">/tháng</span></div>
+                                <p class="text-muted small mb-3"><i class="fa-solid fa-map-pin mr-2"></i>41 Bùi Xương Trạch, Thanh Xuân</p>
+                                <div class="price mb-2">4.500.000đ <span>/tháng</span></div>
                                 <div class="amenities">
-                                    <span><i class="fas fa-vector-square"></i> 30m²</span>
-                                    <span><i class="fas fa-bed"></i> 1 PN</span>
-                                    <span><i class="fas fa-bath"></i> 1 WC</span>
+                                    <div class="amenity-item"><i class="fa-solid fa-expand"></i> 30m²</div>
+                                    <div class="amenity-item"><i class="fa-solid fa-bed"></i> 1 PN</div>
+                                    <div class="amenity-item"><i class="fa-solid fa-bath"></i> 1 WC</div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-6">
-                        <div class="card property-card">
-                            <div class="property-img-wrapper">
-                                <span class="property-badge"><i class="fas fa-map-marker-alt text-primary mr-1"></i>Đống Đa</span>
-                                <span class="property-badge badge-status bg-warning text-dark">Hot</span>
+
+                    <div class="col-md-6 item-col" data-aos="fade-up" data-aos-delay="100">
+                        <div class="property-card">
+                            <div class="property-img-wrap">
+                                <span class="badge-location"><i class="fa-solid fa-location-dot text-primary mr-1"></i>Đống Đa</span>
+                                <span class="badge-status bg-warning text-dark">Gần Hết</span>
                                 <img src="https://images.unsplash.com/photo-1502672260266-1c1de2d93688?ixlib=rb-4.0.3" class="property-img">
+                                <button class="btn-heart" onclick="toggleHeart(this)"><i class="fa-solid fa-heart"></i></button>
+                                <button class="btn-quickview" data-toggle="modal" data-target="#quickViewModal"><i class="fa-solid fa-eye mr-2"></i>Xem Nhanh</button>
                             </div>
-                            <div class="card-body p-4">
+                            <div class="card-body p-4 mt-2">
                                 <h5 class="font-weight-bold text-truncate mb-2">1PN Ban Công Lớn Xã Đàn</h5>
-                                <p class="text-muted small mb-3"><i class="fas fa-location-arrow mr-2"></i>2 Xã Đàn, Đống Đa, Hà Nội</p>
-                                <div class="price-tag mb-2">6.000.000đ<span style="font-size: 14px; color: var(--text-muted); font-weight: 500;">/tháng</span></div>
+                                <p class="text-muted small mb-3"><i class="fa-solid fa-map-pin mr-2"></i>2 Xã Đàn, Đống Đa</p>
+                                <div class="price mb-2">6.000.000đ <span>/tháng</span></div>
                                 <div class="amenities">
-                                    <span><i class="fas fa-vector-square"></i> 45m²</span>
-                                    <span><i class="fas fa-bed"></i> 1 PN</span>
-                                    <span><i class="fas fa-parking"></i> Ô tô đỗ cửa</span>
+                                    <div class="amenity-item"><i class="fa-solid fa-expand"></i> 45m²</div>
+                                    <div class="amenity-item"><i class="fa-solid fa-bed"></i> 1 PN</div>
+                                    <div class="amenity-item"><i class="fa-solid fa-car"></i> Ô tô đỗ</div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-6">
-                        <div class="card property-card">
-                            <div class="property-img-wrapper">
-                                <span class="property-badge"><i class="fas fa-map-marker-alt text-primary mr-1"></i>Đống Đa</span>
+
+                    <div class="col-md-6 item-col" data-aos="fade-up">
+                        <div class="property-card">
+                            <div class="property-img-wrap">
+                                <span class="badge-location"><i class="fa-solid fa-location-dot text-primary mr-1"></i>Đống Đa</span>
                                 <img src="https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?ixlib=rb-4.0.3" class="property-img">
+                                <button class="btn-heart" onclick="toggleHeart(this)"><i class="fa-solid fa-heart"></i></button>
+                                <button class="btn-quickview" data-toggle="modal" data-target="#quickViewModal"><i class="fa-solid fa-eye mr-2"></i>Xem Nhanh</button>
                             </div>
-                            <div class="card-body p-4">
+                            <div class="card-body p-4 mt-2">
                                 <h5 class="font-weight-bold text-truncate mb-2">Duplex Cao Cấp Thái Thịnh</h5>
-                                <p class="text-muted small mb-3"><i class="fas fa-location-arrow mr-2"></i>51 Thái Thịnh, Đống Đa, Hà Nội</p>
-                                <div class="price-tag mb-2">7.500.000đ<span style="font-size: 14px; color: var(--text-muted); font-weight: 500;">/tháng</span></div>
+                                <p class="text-muted small mb-3"><i class="fa-solid fa-map-pin mr-2"></i>51 Thái Thịnh, Đống Đa</p>
+                                <div class="price mb-2">7.500.000đ <span>/tháng</span></div>
                                 <div class="amenities">
-                                    <span><i class="fas fa-vector-square"></i> 55m²</span>
-                                    <span><i class="fas fa-bed"></i> 1 PN Lửng</span>
-                                    <span><i class="fas fa-tv"></i> Full đồ</span>
+                                    <div class="amenity-item"><i class="fa-solid fa-expand"></i> 55m²</div>
+                                    <div class="amenity-item"><i class="fa-solid fa-bed"></i> 1 Lửng</div>
+                                    <div class="amenity-item"><i class="fa-solid fa-tv"></i> Full đồ</div>
                                 </div>
                             </div>
                         </div>
@@ -168,45 +250,101 @@
         </div>
     </div>
 
-    <div class="floating-contact">
-        <a href="tel:0942841758" class="float-btn btn-call"><i class="fas fa-phone-alt"></i></a>
-        <a href="https://zalo.me/0942841758" target="_blank" class="float-btn btn-zalo"><i class="fas fa-comment-dots"></i></a>
-    </div>
-
-    <div class="footer_section">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-4 mb-4">
-                    <h3 class="text-white font-weight-bold mb-3"><i class="fas fa-cube mr-2 text-primary"></i>KA Homes</h3>
-                    <p class="text-muted" style="line-height: 1.8;">Nền tảng cung cấp không gian sống tiện nghi, tối ưu chi phí và nâng tầm cuộc sống của bạn.</p>
+    <div class="modal fade" id="quickViewModal" tabindex="-1">
+        <div class="modal-dialog modal-xl modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
                 </div>
-                <div class="col-lg-4 col-md-6 mb-4">
-                    <h5 class="text-white font-weight-bold mb-4">Danh Mục</h5>
-                    <div class="footer_menu">
-                        <ul class="list-unstyled">
-                            <li class="mb-2"><a href="index.html">Trang chủ</a></li>
-                            <li class="mb-2"><a href="listings.html">Tìm phòng</a></li>
-                            <li class="mb-2"><a href="#">Ký gửi phòng</a></li>
-                            <li class="mb-2"><a href="blog.html">Tin tức</a></li>
-                        </ul>
+                <div class="modal-body p-0">
+                    <div class="row no-gutters">
+                        <div class="col-md-6">
+                            <img src="https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?ixlib=rb-4.0.3" class="w-100 h-100" style="object-fit: cover; min-height: 400px;">
+                        </div>
+                        <div class="col-md-6 p-4 p-lg-5 d-flex flex-column justify-content-center">
+                            <span class="badge badge-primary px-3 py-2 d-inline-block mb-3" style="width: max-content; border-radius: 8px;">Còn phòng</span>
+                            <h2 class="font-weight-bold mb-2">Studio Hiện Đại Bùi Xương Trạch</h2>
+                            <p class="text-muted"><i class="fa-solid fa-location-dot mr-2 text-primary"></i>41 Bùi Xương Trạch, Thanh Xuân</p>
+                            <div class="price mb-4" style="font-size: 2.2rem;">4.500.000đ <span>/tháng</span></div>
+                            
+                            <ul class="list-unstyled mb-4" style="font-weight: 600; color: var(--dark);">
+                                <li class="mb-3"><i class="fa-solid fa-circle-check text-success mr-2"></i>Full nội thất cao cấp (Smart TV, Tủ lạnh...)</li>
+                                <li class="mb-3"><i class="fa-solid fa-circle-check text-success mr-2"></i>Bảo vệ an ninh camera 24/7</li>
+                                <li class="mb-3"><i class="fa-solid fa-circle-check text-success mr-2"></i>Giờ giấc tự do, không chung chủ</li>
+                            </ul>
+                            
+                            <div class="d-flex gap-3">
+                                <a href="tel:0942841758" class="btn btn-gradient flex-grow-1 py-3"><i class="fa-solid fa-phone mr-2"></i>0942 841 758</a>
+                                <a href="https://zalo.me/0942841758" target="_blank" class="btn btn-primary py-3 px-4" style="border-radius: 12px; background: #0068ff; border: none;">Zalo</a>
+                            </div>
+                        </div>
                     </div>
                 </div>
-                <div class="col-lg-4 col-md-6 mb-4">
-                    <h5 class="text-white font-weight-bold mb-4">Liên Hệ</h5>
-                    <ul class="list-unstyled text-muted">
-                        <li class="mb-3"><i class="fas fa-phone mr-3 text-primary"></i>0942 841 758</li>
-                        <li class="mb-3"><i class="fas fa-envelope mr-3 text-primary"></i>gbdz2007@gmail.com</li>
-                        <li class="mb-3"><i class="fas fa-map-marker-alt mr-3 text-primary"></i>Hà Nội, Việt Nam</li>
+            </div>
+        </div>
+    </div>
+
+    <div class="floating-group">
+        <a href="tel:0942841758" class="float-btn call"><i class="fa-solid fa-phone"></i></a>
+        <a href="https://zalo.me/0942841758" target="_blank" class="float-btn zalo"><i class="fa-solid fa-comment-dots"></i></a>
+    </div>
+
+    <footer class="footer">
+        <div class="container position-relative">
+            <div class="row">
+                <div class="col-lg-4 mb-5">
+                    <a href="index.html" class="d-flex align-items-center mb-4 text-white text-decoration-none" style="font-size: 28px; font-weight: 800;">
+                        <i class="fa-solid fa-building-user text-primary mr-2"></i> KA Homes
+                    </a>
+                    <p class="mb-4">Khởi tạo tiêu chuẩn sống mới với hệ thống căn hộ dịch vụ cao cấp, thông minh và an toàn.</p>
+                </div>
+                <div class="col-lg-4 col-md-6 mb-5">
+                    <h4 class="footer-title">Danh Mục</h4>
+                    <ul class="footer-links">
+                        <li><a href="index.html">Trang chủ</a></li>
+                        <li><a href="listings.html">Tìm phòng</a></li>
+                        <li><a href="#">Ký gửi phòng</a></li>
+                        <li><a href="blog.html">Tin tức</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-4 col-md-6 mb-5">
+                    <h4 class="footer-title">Liên Hệ</h4>
+                    <ul class="footer-links">
+                        <li class="d-flex align-items-start gap-3 mb-3">
+                            <i class="fa-solid fa-phone text-primary mt-1 mr-2"></i>
+                            <div><span class="d-block font-weight-bold text-white">0942 841 758</span><small>Hỗ trợ 24/7</small></div>
+                        </li>
+                        <li class="d-flex align-items-start gap-3 mb-3">
+                            <i class="fa-solid fa-envelope text-primary mt-1 mr-2"></i>
+                            <div><span class="d-block font-weight-bold text-white">gbdz2007@gmail.com</span><small>Email Booking</small></div>
+                        </li>
                     </ul>
                 </div>
             </div>
-            <div class="border-top mt-4 pt-4 text-center text-muted small" style="border-color: rgba(255,255,255,0.05) !important;">
-                © 2026 KA Homes. All Rights Reserved.
+            <div class="border-top border-secondary pt-4 text-center">
+                <p class="mb-0 small">© 2026 KA Homes. All Rights Reserved.</p>
             </div>
         </div>
-    </div>
+    </footer>
 
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init({ once: true, offset: 50 });
+        function toggleHeart(element) { $(element).toggleClass('active'); }
+        
+        $('#btn-list').click(function() {
+            $(this).addClass('active'); $('#btn-grid').removeClass('active');
+            $('#property-container').addClass('list-view');
+            $('.item-col').removeClass('col-md-6').addClass('col-12');
+        });
+        
+        $('#btn-grid').click(function() {
+            $(this).addClass('active'); $('#btn-list').removeClass('active');
+            $('#property-container').removeClass('list-view');
+            $('.item-col').removeClass('col-12').addClass('col-md-6');
+        });
+    </script>
 </body>
 </html>
