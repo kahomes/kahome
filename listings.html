@@ -10,34 +10,18 @@
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     
     <style>
-        :root {
-            --primary: #2563eb;
-            --primary-dark: #1d4ed8;
-            --secondary: #f59e0b;
-            --dark: #0f172a;
-            --light: #f8fafc;
-            --muted: #64748b;
-            --radius-lg: 24px;
-            --radius-md: 16px;
-            --shadow-sm: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-            --shadow-lg: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
-        }
-        
+        :root { --primary: #2563eb; --primary-dark: #1d4ed8; --secondary: #f59e0b; --dark: #0f172a; --light: #f8fafc; --muted: #64748b; --radius-lg: 24px; --radius-md: 16px; --shadow-sm: 0 4px 6px -1px rgba(0, 0, 0, 0.1); --shadow-lg: 0 20px 25px -5px rgba(0, 0, 0, 0.1); }
         body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: var(--light); color: #334155; }
-        ::-webkit-scrollbar { width: 8px; }
-        ::-webkit-scrollbar-thumb { background: var(--primary); border-radius: 10px; }
+        ::-webkit-scrollbar { width: 8px; } ::-webkit-scrollbar-thumb { background: var(--primary); border-radius: 10px; }
 
-        /* --- Navbar Default (Trắng) --- */
         .navbar { background: #fff !important; box-shadow: var(--shadow-sm); padding: 12px 0; border-bottom: 1px solid #f1f5f9; }
         .navbar-brand { font-weight: 800; font-size: 28px; color: var(--primary) !important; display: flex; align-items: center; gap: 8px; }
         .nav-link { font-weight: 600; color: var(--dark) !important; margin: 0 15px; position: relative; transition: 0.3s; }
         .nav-link::after { content: ''; position: absolute; width: 0; height: 3px; bottom: -5px; left: 50%; background: var(--primary); transition: 0.3s ease; transform: translateX(-50%); border-radius: 2px; }
         .nav-link:hover::after, .nav-item.active .nav-link::after { width: 100%; }
-        
         .btn-gradient { background: linear-gradient(135deg, var(--primary), #3b82f6); color: white !important; border-radius: 12px; padding: 10px 24px; font-weight: 700; transition: 0.3s; border: none; box-shadow: 0 10px 15px -3px rgba(37, 99, 235, 0.3); }
         .btn-gradient:hover { transform: translateY(-3px); box-shadow: 0 20px 25px -5px rgba(37, 99, 235, 0.4); }
 
-        /* --- Sidebar --- */
         .sidebar-filter { background: #fff; border-radius: var(--radius-md); padding: 25px; box-shadow: var(--shadow-sm); border: 1px solid #f1f5f9; position: sticky; top: 100px; }
         .filter-title { font-weight: 800; font-size: 1.1rem; color: var(--dark); margin-bottom: 15px; display: flex; align-items: center; gap: 8px; }
         .custom-control-label { cursor: pointer; color: #475569; font-weight: 600; }
@@ -45,35 +29,28 @@
         .custom-checkbox .custom-control-label::before { border-radius: 4px; border: 2px solid #cbd5e1; top: 0.15rem; width: 1.2rem; height: 1.2rem; }
         .custom-checkbox .custom-control-label::after { top: 0.15rem; width: 1.2rem; height: 1.2rem; }
 
-        .range-slider-wrapper { padding: 10px 0; }
         input[type=range] { -webkit-appearance: none; width: 100%; background: transparent; }
         input[type=range]::-webkit-slider-thumb { -webkit-appearance: none; height: 20px; width: 20px; border-radius: 50%; background: var(--primary); cursor: pointer; margin-top: -8px; box-shadow: 0 2px 6px rgba(0,0,0,0.2); }
         input[type=range]::-webkit-slider-runnable-track { width: 100%; height: 6px; cursor: pointer; background: #e2e8f0; border-radius: 10px; }
 
-        /* --- Property Card (Grid) --- */
         .property-card { background: #fff; border-radius: var(--radius-md); overflow: hidden; box-shadow: var(--shadow-sm); transition: 0.4s ease; border: 1px solid #f1f5f9; position: relative; margin-bottom: 30px; }
         .property-card:hover { transform: translateY(-8px); box-shadow: var(--shadow-lg); border-color: rgba(37,99,235,0.2); }
         .property-img-wrap { position: relative; height: 240px; overflow: hidden; }
         .property-img { width: 100%; height: 100%; object-fit: cover; transition: 0.7s; }
         .property-card:hover .property-img { transform: scale(1.1); }
-        
         .badge-location { position: absolute; top: 16px; left: 16px; background: rgba(255,255,255,0.95); color: var(--dark); padding: 6px 12px; border-radius: 8px; font-weight: 700; font-size: 12px; z-index: 2; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
         .badge-status { position: absolute; top: 16px; right: 16px; color: #fff; padding: 6px 12px; border-radius: 8px; font-weight: 700; font-size: 12px; z-index: 2; }
-        
         .btn-heart { position: absolute; bottom: -20px; right: 24px; width: 44px; height: 44px; border-radius: 50%; background: #fff; display: flex; align-items: center; justify-content: center; color: #cbd5e1; font-size: 18px; box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1); z-index: 3; transition: 0.3s; cursor: pointer; border: none; }
         .btn-heart:hover, .btn-heart.active { color: #ef4444; transform: scale(1.15); }
-        
         .btn-quickview { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%) scale(0.9); opacity: 0; background: rgba(255,255,255,0.95); font-weight: 700; border-radius: 20px; padding: 10px 20px; border: none; transition: 0.3s; z-index: 5; pointer-events: none; color: var(--dark); }
         .property-img-wrap:hover .btn-quickview { opacity: 1; transform: translate(-50%, -50%) scale(1); pointer-events: auto; }
         .btn-quickview:hover { background: var(--primary); color: white; }
-
         .price { color: var(--primary); font-size: 1.4rem; font-weight: 800; display: flex; align-items: baseline; gap: 4px; }
         .price span { font-size: 0.9rem; font-weight: 500; color: var(--muted); }
         .amenities { display: flex; gap: 16px; padding-top: 16px; margin-top: 16px; border-top: 1px dashed #e2e8f0; }
         .amenity-item { display: flex; align-items: center; gap: 6px; font-size: 0.85rem; font-weight: 700; color: var(--muted); }
         .amenity-item i { color: var(--primary); }
 
-        /* --- List View --- */
         .list-view .property-card { display: flex; flex-direction: row; height: 240px; }
         .list-view .property-img-wrap { width: 35%; height: 100%; flex-shrink: 0; }
         .list-view .card-body { padding: 25px !important; display: flex; flex-direction: column; justify-content: center; width: 65%; }
@@ -81,24 +58,20 @@
         .view-controls .btn { background: #fff; border: 1px solid #e2e8f0; color: #94a3b8; border-radius: 8px; font-size: 18px; padding: 6px 12px; }
         .view-controls .btn.active { background: rgba(37,99,235,0.1); color: var(--primary); border-color: var(--primary); }
 
-        /* --- Quick View Modal --- */
         .modal-content { border-radius: 24px; border: none; overflow: hidden; box-shadow: var(--shadow-lg); }
         .modal-header { border-bottom: none; position: absolute; right: 0; z-index: 10; padding: 15px; }
         .modal-header .close { background: white; border-radius: 50%; width: 40px; height: 40px; opacity: 1; box-shadow: var(--shadow-sm); }
 
-        /* --- Floating Actions --- */
         .floating-group { position: fixed; bottom: 30px; right: 30px; z-index: 999; display: flex; flex-direction: column; gap: 15px; }
         .float-btn { width: 56px; height: 56px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 24px; color: white; box-shadow: 0 10px 25px rgba(0,0,0,0.2); transition: 0.3s; text-decoration: none; }
-        .float-btn.zalo { background: #0068ff; }
-        .float-btn.call { background: #10b981; }
+        .float-btn.zalo { background: #0068ff; } .float-btn.call { background: #10b981; }
         .float-btn:hover { transform: scale(1.1); color: white; }
 
-        /* --- Footer --- */
         .footer { background: var(--dark); color: #94a3b8; padding: 60px 0 20px; margin-top: 60px; }
         .footer-title { color: #fff; font-weight: 700; margin-bottom: 24px; font-size: 1.2rem; }
         .footer-links { list-style: none; padding: 0; margin: 0; }
         .footer-links li { margin-bottom: 12px; }
-        .footer-links a { color: #94a3b8; text-decoration: none; transition: 0.3s; display: inline-block; }
+        .footer-links a { color: #94a3b8; text-decoration: none; transition: transform 0.3s ease, color 0.3s ease; display: inline-block; }
         .footer-links a:hover { color: var(--primary); transform: translateX(8px); }
     </style>
 </head>
@@ -114,8 +87,10 @@
                     <li class="nav-item"><a class="nav-link" href="index.html">Trang chủ</a></li>
                     <li class="nav-item active"><a class="nav-link" href="listings.html">Thuê Phòng</a></li>
                     <li class="nav-item"><a class="nav-link" href="blog.html">Tin tức</a></li>
+                    <li class="nav-item"><a class="nav-link" href="about.html">Về chúng tôi</a></li>
+                    <li class="nav-item"><a class="nav-link" href="reviews.html">Đánh giá</a></li>
                     <li class="nav-item ml-lg-4 mt-3 mt-lg-0">
-                        <a class="btn btn-gradient" href="#"><i class="fa-solid fa-key mr-2"></i>Ký gửi phòng</a>
+                        <a class="btn btn-gradient" href="tel:0942841758"><i class="fa-solid fa-phone mr-2"></i>0942 841 758</a>
                     </li>
                 </ul>
             </div>
@@ -138,7 +113,7 @@
                         <option>Đống Đa</option>
                     </select>
 
-                    <h6 class="filter-title">Khoảng Giá <small class="text-muted ml-auto font-weight-normal" id="priceLabel">3 - 15 Triệu</small></h6>
+                    <h6 class="filter-title">Khoảng Giá <small class="text-muted ml-auto font-weight-normal" id="priceLabel">Dưới 15 Triệu</small></h6>
                     <div class="range-slider-wrapper mb-4">
                         <input type="range" min="3" max="25" value="15" oninput="document.getElementById('priceLabel').innerText = 'Dưới ' + this.value + ' Triệu'">
                     </div>
@@ -165,8 +140,7 @@
 
             <div class="col-lg-9">
                 <div class="d-flex flex-wrap justify-content-between align-items-center mb-4 pb-2 border-bottom">
-                    <h5 class="font-weight-bold m-0 mb-3 mb-md-0">Hiển thị <span class="text-primary">24</span> kết quả</h5>
-                    
+                    <h5 class="font-weight-bold m-0 mb-3 mb-md-0">Danh sách <span class="text-primary">căn hộ</span> trống</h5>
                     <div class="d-flex align-items-center gap-3">
                         <select class="form-control bg-light border-0 mr-3" style="border-radius: 10px; width: auto; font-weight: 600;">
                             <option>Sắp xếp: Mới nhất</option>
@@ -303,8 +277,8 @@
                     <ul class="footer-links">
                         <li><a href="index.html">Trang chủ</a></li>
                         <li><a href="listings.html">Tìm phòng</a></li>
-                        <li><a href="#">Ký gửi phòng</a></li>
-                        <li><a href="blog.html">Tin tức</a></li>
+                        <li><a href="about.html">Về chúng tôi</a></li>
+                        <li><a href="reviews.html">Đánh giá</a></li>
                     </ul>
                 </div>
                 <div class="col-lg-4 col-md-6 mb-5">
@@ -333,17 +307,13 @@
     <script>
         AOS.init({ once: true, offset: 50 });
         function toggleHeart(element) { $(element).toggleClass('active'); }
-        
         $('#btn-list').click(function() {
             $(this).addClass('active'); $('#btn-grid').removeClass('active');
-            $('#property-container').addClass('list-view');
-            $('.item-col').removeClass('col-md-6').addClass('col-12');
+            $('#property-container').addClass('list-view'); $('.item-col').removeClass('col-md-6').addClass('col-12');
         });
-        
         $('#btn-grid').click(function() {
             $(this).addClass('active'); $('#btn-list').removeClass('active');
-            $('#property-container').removeClass('list-view');
-            $('.item-col').removeClass('col-12').addClass('col-md-6');
+            $('#property-container').removeClass('list-view'); $('.item-col').removeClass('col-12').addClass('col-md-6');
         });
     </script>
 </body>
