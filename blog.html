@@ -11,10 +11,10 @@
     
     <style>
         :root { --primary: #2563eb; --primary-dark: #1d4ed8; --secondary: #f59e0b; --dark: #0f172a; --light: #f8fafc; --muted: #64748b; --radius-lg: 24px; --radius-md: 16px; --shadow-sm: 0 4px 6px -1px rgba(0, 0, 0, 0.1); --shadow-lg: 0 20px 25px -5px rgba(0, 0, 0, 0.1); }
-        body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: var(--light); color: #334155; }
+        body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: var(--light); color: #334155; overflow-x: hidden; }
         ::-webkit-scrollbar { width: 8px; } ::-webkit-scrollbar-thumb { background: var(--primary); border-radius: 10px; }
 
-        .navbar { background: #fff !important; box-shadow: var(--shadow-sm); padding: 12px 0; border-bottom: 1px solid #f1f5f9; }
+        .navbar { background: #fff !important; box-shadow: var(--shadow-sm); padding: 12px 0; border-bottom: 1px solid #f1f5f9; z-index: 1000;}
         .navbar-brand { font-weight: 800; font-size: 28px; color: var(--primary) !important; display: flex; align-items: center; gap: 8px; }
         .nav-link { font-weight: 600; color: var(--dark) !important; margin: 0 15px; position: relative; transition: 0.3s; }
         .nav-link::after { content: ''; position: absolute; width: 0; height: 3px; bottom: -5px; left: 50%; background: var(--primary); transition: 0.3s ease; transform: translateX(-50%); border-radius: 2px; }
@@ -61,16 +61,16 @@
     <nav class="navbar navbar-expand-lg sticky-top">
         <div class="container">
             <a class="navbar-brand" href="index.html"><i class="fa-solid fa-building-user"></i> KA Homes</a>
-            <button class="navbar-toggler border-0" type="button" data-toggle="collapse" data-target="#navbarNav">
+            <button class="navbar-toggler border-0 text-dark" type="button" data-toggle="collapse" data-target="#navbarNav">
                 <i class="fa-solid fa-bars" style="font-size: 24px;"></i>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ml-auto align-items-center">
                     <li class="nav-item"><a class="nav-link" href="index.html">Trang chủ</a></li>
                     <li class="nav-item"><a class="nav-link" href="listings.html">Thuê Phòng</a></li>
-                    <li class="nav-item active"><a class="nav-link" href="blog.html">Tin tức</a></li>
                     <li class="nav-item"><a class="nav-link" href="about.html">Về chúng tôi</a></li>
                     <li class="nav-item"><a class="nav-link" href="reviews.html">Đánh giá</a></li>
+                    <li class="nav-item active"><a class="nav-link" href="blog.html">Tin tức</a></li>
                     <li class="nav-item ml-lg-4 mt-3 mt-lg-0">
                         <a class="btn btn-gradient" href="tel:0942841758"><i class="fa-solid fa-phone mr-2"></i>0942 841 758</a>
                     </li>
@@ -113,32 +113,6 @@
                                 <div class="text-muted small font-weight-bold mb-2"><i class="fa-regular fa-calendar mr-2"></i>10 Tháng 4, 2026</div>
                                 <h5 class="blog-title">5 Điều khoản "chết người" cần soi kỹ khi ký hợp đồng thuê nhà</h5>
                                 <p class="card-text text-muted small mt-2">Đừng vội đặt bút ký nếu bạn chưa làm rõ các khoản phụ phí, điều kiện phạt cọc và trách nhiệm sửa chữa...</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-6 mb-4" data-aos="fade-up">
-                        <div class="card blog-card">
-                            <div class="blog-img-wrap">
-                                <span class="blog-badge">Review</span>
-                                <img src="https://images.unsplash.com/photo-1513694203232-719a280e022f?ixlib=rb-4.0.3" class="blog-img">
-                            </div>
-                            <div class="card-body p-4">
-                                <div class="text-muted small font-weight-bold mb-2"><i class="fa-regular fa-calendar mr-2"></i>05 Tháng 4, 2026</div>
-                                <h5 class="blog-title">Ưu nhược điểm khi thuê căn hộ dịch vụ khu vực Đống Đa</h5>
-                                <p class="card-text text-muted small mt-2">Đống Đa là trung tâm đi lại thuận tiện nhưng giá thuê thường cao. Cùng phân tích xem có đáng tiền không nhé.</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-6 mb-4" data-aos="fade-up" data-aos-delay="100">
-                        <div class="card blog-card">
-                            <div class="blog-img-wrap">
-                                <span class="blog-badge">Lối Sống</span>
-                                <img src="https://images.unsplash.com/photo-1524758631624-e2822e304c36?ixlib=rb-4.0.3" class="blog-img">
-                            </div>
-                            <div class="card-body p-4">
-                                <div class="text-muted small font-weight-bold mb-2"><i class="fa-regular fa-calendar mr-2"></i>01 Tháng 4, 2026</div>
-                                <h5 class="blog-title">Xu hướng Coliving: Chung sống văn minh trong căn hộ cao cấp</h5>
-                                <p class="card-text text-muted small mt-2">Mô hình chia sẻ phòng khách và bếp đang thịnh hành. Đâu là bí quyết để bạn cùng phòng luôn hòa thuận?</p>
                             </div>
                         </div>
                     </div>
@@ -189,9 +163,10 @@
                     <h4 class="footer-title">Danh Mục</h4>
                     <ul class="footer-links">
                         <li><a href="index.html">Trang chủ</a></li>
-                        <li><a href="listings.html">Tìm phòng</a></li>
+                        <li><a href="listings.html">Thuê Phòng</a></li>
                         <li><a href="about.html">Về chúng tôi</a></li>
                         <li><a href="reviews.html">Đánh giá</a></li>
+                        <li><a href="blog.html">Tin tức</a></li>
                     </ul>
                 </div>
                 <div class="col-lg-4 col-md-6 mb-5">

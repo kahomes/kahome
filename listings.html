@@ -14,21 +14,17 @@
         body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: var(--light); color: #334155; }
         ::-webkit-scrollbar { width: 8px; } ::-webkit-scrollbar-thumb { background: var(--primary); border-radius: 10px; }
 
-        .navbar { background: #fff !important; box-shadow: var(--shadow-sm); padding: 12px 0; border-bottom: 1px solid #f1f5f9; }
+        .navbar { background: #fff !important; box-shadow: var(--shadow-sm); padding: 12px 0; border-bottom: 1px solid #f1f5f9; z-index: 1000;}
         .navbar-brand { font-weight: 800; font-size: 28px; color: var(--primary) !important; display: flex; align-items: center; gap: 8px; }
         .nav-link { font-weight: 600; color: var(--dark) !important; margin: 0 15px; position: relative; transition: 0.3s; }
         .nav-link::after { content: ''; position: absolute; width: 0; height: 3px; bottom: -5px; left: 50%; background: var(--primary); transition: 0.3s ease; transform: translateX(-50%); border-radius: 2px; }
         .nav-link:hover::after, .nav-item.active .nav-link::after { width: 100%; }
         .btn-gradient { background: linear-gradient(135deg, var(--primary), #3b82f6); color: white !important; border-radius: 12px; padding: 10px 24px; font-weight: 700; transition: 0.3s; border: none; box-shadow: 0 10px 15px -3px rgba(37, 99, 235, 0.3); }
-        .btn-gradient:hover { transform: translateY(-3px); box-shadow: 0 20px 25px -5px rgba(37, 99, 235, 0.4); }
 
         .sidebar-filter { background: #fff; border-radius: var(--radius-md); padding: 25px; box-shadow: var(--shadow-sm); border: 1px solid #f1f5f9; position: sticky; top: 100px; }
         .filter-title { font-weight: 800; font-size: 1.1rem; color: var(--dark); margin-bottom: 15px; display: flex; align-items: center; gap: 8px; }
         .custom-control-label { cursor: pointer; color: #475569; font-weight: 600; }
         .custom-checkbox .custom-control-input:checked~.custom-control-label::before { background-color: var(--primary); border-color: var(--primary); border-radius: 4px; }
-        .custom-checkbox .custom-control-label::before { border-radius: 4px; border: 2px solid #cbd5e1; top: 0.15rem; width: 1.2rem; height: 1.2rem; }
-        .custom-checkbox .custom-control-label::after { top: 0.15rem; width: 1.2rem; height: 1.2rem; }
-
         input[type=range] { -webkit-appearance: none; width: 100%; background: transparent; }
         input[type=range]::-webkit-slider-thumb { -webkit-appearance: none; height: 20px; width: 20px; border-radius: 50%; background: var(--primary); cursor: pointer; margin-top: -8px; box-shadow: 0 2px 6px rgba(0,0,0,0.2); }
         input[type=range]::-webkit-slider-runnable-track { width: 100%; height: 6px; cursor: pointer; background: #e2e8f0; border-radius: 10px; }
@@ -36,15 +32,15 @@
         .property-card { background: #fff; border-radius: var(--radius-md); overflow: hidden; box-shadow: var(--shadow-sm); transition: 0.4s ease; border: 1px solid #f1f5f9; position: relative; margin-bottom: 30px; }
         .property-card:hover { transform: translateY(-8px); box-shadow: var(--shadow-lg); border-color: rgba(37,99,235,0.2); }
         .property-img-wrap { position: relative; height: 240px; overflow: hidden; }
-        .property-img { width: 100%; height: 100%; object-fit: cover; transition: 0.7s; }
+        .property-img { width: 100%; height: 100%; object-fit: cover; object-position: top; transition: 0.7s; }
         .property-card:hover .property-img { transform: scale(1.1); }
         .badge-location { position: absolute; top: 16px; left: 16px; background: rgba(255,255,255,0.95); color: var(--dark); padding: 6px 12px; border-radius: 8px; font-weight: 700; font-size: 12px; z-index: 2; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
         .badge-status { position: absolute; top: 16px; right: 16px; color: #fff; padding: 6px 12px; border-radius: 8px; font-weight: 700; font-size: 12px; z-index: 2; }
-        .btn-heart { position: absolute; bottom: -20px; right: 24px; width: 44px; height: 44px; border-radius: 50%; background: #fff; display: flex; align-items: center; justify-content: center; color: #cbd5e1; font-size: 18px; box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1); z-index: 3; transition: 0.3s; cursor: pointer; border: none; }
-        .btn-heart:hover, .btn-heart.active { color: #ef4444; transform: scale(1.15); }
-        .btn-quickview { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%) scale(0.9); opacity: 0; background: rgba(255,255,255,0.95); font-weight: 700; border-radius: 20px; padding: 10px 20px; border: none; transition: 0.3s; z-index: 5; pointer-events: none; color: var(--dark); }
+        
+        .btn-quickview { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%) scale(0.9); opacity: 0; background: rgba(255,255,255,0.95); font-weight: 700; border-radius: 20px; padding: 10px 20px; border: none; transition: 0.3s; z-index: 5; pointer-events: none; color: var(--dark); box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
         .property-img-wrap:hover .btn-quickview { opacity: 1; transform: translate(-50%, -50%) scale(1); pointer-events: auto; }
-        .btn-quickview:hover { background: var(--primary); color: white; }
+        .btn-quickview:hover { background: var(--primary); color: white; transform: translate(-50%, -50%) scale(1.05); }
+
         .price { color: var(--primary); font-size: 1.4rem; font-weight: 800; display: flex; align-items: baseline; gap: 4px; }
         .price span { font-size: 0.9rem; font-weight: 500; color: var(--muted); }
         .amenities { display: flex; gap: 16px; padding-top: 16px; margin-top: 16px; border-top: 1px dashed #e2e8f0; }
@@ -58,9 +54,16 @@
         .view-controls .btn { background: #fff; border: 1px solid #e2e8f0; color: #94a3b8; border-radius: 8px; font-size: 18px; padding: 6px 12px; }
         .view-controls .btn.active { background: rgba(37,99,235,0.1); color: var(--primary); border-color: var(--primary); }
 
-        .modal-content { border-radius: 24px; border: none; overflow: hidden; box-shadow: var(--shadow-lg); }
+        /* TÙY CHỈNH MODAL HIỂN THỊ CHI TIẾT RIÊNG LẺ */
+        .modal-content { border-radius: var(--radius-lg); border: none; overflow: hidden; box-shadow: var(--shadow-lg); }
         .modal-header { border-bottom: none; position: absolute; right: 0; z-index: 10; padding: 15px; }
-        .modal-header .close { background: white; border-radius: 50%; width: 40px; height: 40px; opacity: 1; box-shadow: var(--shadow-sm); }
+        .modal-header .close { background: white; border-radius: 50%; width: 40px; height: 40px; opacity: 1; box-shadow: var(--shadow-sm); display: flex; align-items: center; justify-content: center; transition: 0.3s; }
+        .modal-header .close:hover { transform: rotate(90deg); color: #ef4444; }
+        
+        .modal-gallery .carousel-inner { border-radius: 12px; }
+        .modal-gallery img { width: 100%; height: 300px; object-fit: cover; border-radius: 12px; }
+        .feature-box { background: #f8fafc; border-radius: 12px; padding: 15px; margin-bottom: 15px; border: 1px solid #e2e8f0; }
+        .feature-box i { width: 24px; color: var(--primary); }
 
         .floating-group { position: fixed; bottom: 30px; right: 30px; z-index: 999; display: flex; flex-direction: column; gap: 15px; }
         .float-btn { width: 56px; height: 56px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 24px; color: white; box-shadow: 0 10px 25px rgba(0,0,0,0.2); transition: 0.3s; text-decoration: none; }
@@ -79,16 +82,16 @@
     <nav class="navbar navbar-expand-lg sticky-top">
         <div class="container">
             <a class="navbar-brand" href="index.html"><i class="fa-solid fa-building-user"></i> KA Homes</a>
-            <button class="navbar-toggler border-0" type="button" data-toggle="collapse" data-target="#navbarNav">
+            <button class="navbar-toggler border-0 text-dark" type="button" data-toggle="collapse" data-target="#navbarNav">
                 <i class="fa-solid fa-bars" style="font-size: 24px;"></i>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ml-auto align-items-center">
                     <li class="nav-item"><a class="nav-link" href="index.html">Trang chủ</a></li>
                     <li class="nav-item active"><a class="nav-link" href="listings.html">Thuê Phòng</a></li>
-                    <li class="nav-item"><a class="nav-link" href="blog.html">Tin tức</a></li>
                     <li class="nav-item"><a class="nav-link" href="about.html">Về chúng tôi</a></li>
                     <li class="nav-item"><a class="nav-link" href="reviews.html">Đánh giá</a></li>
+                    <li class="nav-item"><a class="nav-link" href="blog.html">Tin tức</a></li>
                     <li class="nav-item ml-lg-4 mt-3 mt-lg-0">
                         <a class="btn btn-gradient" href="tel:0942841758"><i class="fa-solid fa-phone mr-2"></i>0942 841 758</a>
                     </li>
@@ -129,8 +132,8 @@
                             <label class="custom-control-label" for="t2">Căn hộ 1 Phòng Ngủ</label>
                         </div>
                         <div class="custom-control custom-checkbox mb-3">
-                            <input type="checkbox" class="custom-control-input" id="t3">
-                            <label class="custom-control-label" for="t3">Căn hộ 2 Phòng Ngủ</label>
+                            <input type="checkbox" class="custom-control-input" id="t3" checked>
+                            <label class="custom-control-label" for="t3">Duplex / Có Gác</label>
                         </div>
                     </div>
 
@@ -142,11 +145,6 @@
                 <div class="d-flex flex-wrap justify-content-between align-items-center mb-4 pb-2 border-bottom">
                     <h5 class="font-weight-bold m-0 mb-3 mb-md-0">Danh sách <span class="text-primary">căn hộ</span> trống</h5>
                     <div class="d-flex align-items-center gap-3">
-                        <select class="form-control bg-light border-0 mr-3" style="border-radius: 10px; width: auto; font-weight: 600;">
-                            <option>Sắp xếp: Mới nhất</option>
-                            <option>Giá tăng dần</option>
-                            <option>Giá giảm dần</option>
-                        </select>
                         <div class="view-controls btn-group">
                             <button class="btn active" id="btn-grid"><i class="fa-solid fa-border-all"></i></button>
                             <button class="btn" id="btn-list"><i class="fa-solid fa-list"></i></button>
@@ -155,23 +153,23 @@
                 </div>
                 
                 <div class="row" id="property-container">
+                    
                     <div class="col-md-6 item-col" data-aos="fade-up">
                         <div class="property-card">
                             <div class="property-img-wrap">
                                 <span class="badge-location"><i class="fa-solid fa-location-dot text-primary mr-1"></i>Thanh Xuân</span>
-                                <span class="badge-status bg-primary">Mới Update</span>
+                                <span class="badge-status bg-primary">Trống 4 phòng</span>
                                 <img src="bxt/bxt.jpg" class="property-img">
-                                <button class="btn-heart" onclick="toggleHeart(this)"><i class="fa-solid fa-heart"></i></button>
-                                <button class="btn-quickview" data-toggle="modal" data-target="#quickViewModal"><i class="fa-solid fa-eye mr-2"></i>Xem Nhanh</button>
+                                <button class="btn-quickview" data-toggle="modal" data-target="#modalBXT"><i class="fa-solid fa-eye mr-2"></i>Xem Nhanh</button>
                             </div>
                             <div class="card-body p-4 mt-2">
-                                <h5 class="font-weight-bold text-truncate mb-2">Studio Hiện Đại Bùi Xương Trạch</h5>
-                                <p class="text-muted small mb-3"><i class="fa-solid fa-map-pin mr-2"></i>41 Bùi Xương Trạch, Thanh Xuân</p>
-                                <div class="price mb-2">4.500.000đ <span>/tháng</span></div>
+                                <h5 class="font-weight-bold text-truncate mb-2">Phòng Studio Full Đồ</h5>
+                                <p class="text-muted small mb-3"><i class="fa-solid fa-map-pin mr-2"></i>Ngõ 41 Bùi Xương Trạch</p>
+                                <div class="price mb-2">5.800.000đ <span>/tháng</span></div>
                                 <div class="amenities">
-                                    <div class="amenity-item"><i class="fa-solid fa-expand"></i> 30m²</div>
-                                    <div class="amenity-item"><i class="fa-solid fa-bed"></i> 1 PN</div>
-                                    <div class="amenity-item"><i class="fa-solid fa-bath"></i> 1 WC</div>
+                                    <div class="amenity-item"><i class="fa-solid fa-couch"></i> Full đồ</div>
+                                    <div class="amenity-item"><i class="fa-solid fa-car"></i> Oto đỗ</div>
+                                    <div class="amenity-item"><i class="fa-solid fa-elevator"></i> Thang máy</div>
                                 </div>
                             </div>
                         </div>
@@ -181,19 +179,18 @@
                         <div class="property-card">
                             <div class="property-img-wrap">
                                 <span class="badge-location"><i class="fa-solid fa-location-dot text-primary mr-1"></i>Đống Đa</span>
-                                <span class="badge-status bg-warning text-dark">Gần Hết</span>
+                                <span class="badge-status bg-warning text-dark">Trống 5 phòng</span>
                                 <img src="xd/xd.jpg" class="property-img">
-                                <button class="btn-heart" onclick="toggleHeart(this)"><i class="fa-solid fa-heart"></i></button>
-                                <button class="btn-quickview" data-toggle="modal" data-target="#quickViewModal"><i class="fa-solid fa-eye mr-2"></i>Xem Nhanh</button>
+                                <button class="btn-quickview" data-toggle="modal" data-target="#modalXD"><i class="fa-solid fa-eye mr-2"></i>Xem Nhanh</button>
                             </div>
                             <div class="card-body p-4 mt-2">
-                                <h5 class="font-weight-bold text-truncate mb-2">1PN Ban Công Lớn Xã Đàn</h5>
-                                <p class="text-muted small mb-3"><i class="fa-solid fa-map-pin mr-2"></i>2 Xã Đàn, Đống Đa</p>
-                                <div class="price mb-2">6.000.000đ <span>/tháng</span></div>
+                                <h5 class="font-weight-bold text-truncate mb-2">Studio Gác Xép Hiện Đại</h5>
+                                <p class="text-muted small mb-3"><i class="fa-solid fa-map-pin mr-2"></i>2 Xã Đàn (Gần hầm Kim Liên)</p>
+                                <div class="price mb-2">4.800.000đ <span>- 5.600.000đ</span></div>
                                 <div class="amenities">
-                                    <div class="amenity-item"><i class="fa-solid fa-expand"></i> 45m²</div>
-                                    <div class="amenity-item"><i class="fa-solid fa-bed"></i> 1 PN</div>
-                                    <div class="amenity-item"><i class="fa-solid fa-car"></i> Ô tô đỗ</div>
+                                    <div class="amenity-item"><i class="fa-solid fa-bed"></i> Gác xép</div>
+                                    <div class="amenity-item"><i class="fa-solid fa-shirt"></i> Máy giặt</div>
+                                    <div class="amenity-item"><i class="fa-solid fa-couch"></i> Full đồ</div>
                                 </div>
                             </div>
                         </div>
@@ -203,18 +200,18 @@
                         <div class="property-card">
                             <div class="property-img-wrap">
                                 <span class="badge-location"><i class="fa-solid fa-location-dot text-primary mr-1"></i>Đống Đa</span>
+                                <span class="badge-status bg-danger">Nhiều mức giá</span>
                                 <img src="tt/tt.jpg" class="property-img">
-                                <button class="btn-heart" onclick="toggleHeart(this)"><i class="fa-solid fa-heart"></i></button>
-                                <button class="btn-quickview" data-toggle="modal" data-target="#quickViewModal"><i class="fa-solid fa-eye mr-2"></i>Xem Nhanh</button>
+                                <button class="btn-quickview" data-toggle="modal" data-target="#modalTT"><i class="fa-solid fa-eye mr-2"></i>Xem Nhanh</button>
                             </div>
                             <div class="card-body p-4 mt-2">
-                                <h5 class="font-weight-bold text-truncate mb-2">Duplex Cao Cấp Thái Thịnh</h5>
-                                <p class="text-muted small mb-3"><i class="fa-solid fa-map-pin mr-2"></i>51 Thái Thịnh, Đống Đa</p>
-                                <div class="price mb-2">7.500.000đ <span>/tháng</span></div>
+                                <h5 class="font-weight-bold text-truncate mb-2">Phòng Trọ Tiện Nghi</h5>
+                                <p class="text-muted small mb-3"><i class="fa-solid fa-map-pin mr-2"></i>Ngõ 51 Thái Thịnh</p>
+                                <div class="price mb-2">4.700.000đ <span>- 5.200.000đ</span></div>
                                 <div class="amenities">
-                                    <div class="amenity-item"><i class="fa-solid fa-expand"></i> 55m²</div>
-                                    <div class="amenity-item"><i class="fa-solid fa-bed"></i> 1 Lửng</div>
-                                    <div class="amenity-item"><i class="fa-solid fa-tv"></i> Full đồ</div>
+                                    <div class="amenity-item"><i class="fa-solid fa-elevator"></i> Thang máy</div>
+                                    <div class="amenity-item"><i class="fa-solid fa-shirt"></i> Sấy chung</div>
+                                    <div class="amenity-item"><i class="fa-solid fa-couch"></i> Full đồ</div>
                                 </div>
                             </div>
                         </div>
@@ -224,31 +221,78 @@
         </div>
     </div>
 
-    <div class="modal fade" id="quickViewModal" tabindex="-1">
-        <div class="modal-dialog modal-xl modal-dialog-centered">
+    <div class="modal fade" id="modalBXT" tabindex="-1">
+        <div class="modal-dialog modal-xl modal-dialog-centered modal-dialog-scrollable">
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
                 </div>
                 <div class="modal-body p-0">
                     <div class="row no-gutters">
-                        <div class="col-md-6">
-                            <img src="avatar/kahomes.jpg" class="w-100 h-100" style="object-fit: cover; min-height: 400px;">
+                        <div class="col-lg-5 p-4 bg-light">
+                            <h5 class="font-weight-bold mb-3">Hình ảnh chi tiết</h5>
+                            <div id="carouselBXT" class="carousel slide modal-gallery" data-ride="carousel">
+                                <div class="carousel-inner shadow-sm">
+                                    <div class="carousel-item active">
+                                        <img src="bxt/bxt1.jpg" alt="BXT">
+                                    </div>
+                                    <div class="carousel-item">
+                                        <img src="bxt/bxt2.jpg" alt="Demo Room">
+                                    </div>
+                                    <div class="carousel-item">
+                                        <img src="bxt/bxt3.jpg" alt="Demo Room">
+                                    </div>
+                                </div>
+                                <a class="carousel-control-prev" href="#carouselBXT" role="button" data-slide="prev">
+                                    <span class="carousel-control-prev-icon bg-dark rounded-circle" style="padding: 15px;" aria-hidden="true"></span>
+                                </a>
+                                <a class="carousel-control-next" href="#carouselBXT" role="button" data-slide="next">
+                                    <span class="carousel-control-next-icon bg-dark rounded-circle" style="padding: 15px;" aria-hidden="true"></span>
+                                </a>
+                            </div>
                         </div>
-                        <div class="col-md-6 p-4 p-lg-5 d-flex flex-column justify-content-center">
-                            <span class="badge badge-primary px-3 py-2 d-inline-block mb-3" style="width: max-content; border-radius: 8px;">Còn phòng</span>
-                            <h2 class="font-weight-bold mb-2">Studio Hiện Đại Bùi Xương Trạch</h2>
-                            <p class="text-muted"><i class="fa-solid fa-location-dot mr-2 text-primary"></i>41 Bùi Xương Trạch, Thanh Xuân</p>
-                            <div class="price mb-4" style="font-size: 2.2rem;">4.500.000đ <span>/tháng</span></div>
+                        
+                        <div class="col-lg-7 p-4 p-lg-5">
+                            <span class="badge badge-primary px-3 py-2 mb-3" style="border-radius: 8px;">Trống 4 phòng</span>
+                            <h2 class="font-weight-bold mb-2">Phòng Studio Full Đồ</h2>
+                            <p class="text-muted mb-3"><i class="fa-solid fa-map-pin mr-2 text-primary"></i>Ngõ 41 Bùi Xương Trạch, Thanh Xuân</p>
+                            <p class="small text-muted mb-4">Gần Vũ Tông Phan, Khương Trung, Đại học KHTN, KHXH&NV, Thăng Long...</p>
                             
-                            <ul class="list-unstyled mb-4" style="font-weight: 600; color: var(--dark);">
-                                <li class="mb-3"><i class="fa-solid fa-circle-check text-success mr-2"></i>Full nội thất cao cấp (Smart TV, Tủ lạnh...)</li>
-                                <li class="mb-3"><i class="fa-solid fa-circle-check text-success mr-2"></i>Bảo vệ an ninh camera 24/7</li>
-                                <li class="mb-3"><i class="fa-solid fa-circle-check text-success mr-2"></i>Giờ giấc tự do, không chung chủ</li>
-                            </ul>
+                            <div class="price mb-4" style="font-size: 2rem;">5.800.000đ <span>/tháng</span></div>
+                            <p class="text-danger small font-weight-bold mt="-2 mb-4" style="margin-top: -15px;">* Fix 200k nếu không dùng bếp từ</p>
                             
-                            <div class="d-flex gap-3">
-                                <a href="tel:0942841758" class="btn btn-gradient flex-grow-1 py-3"><i class="fa-solid fa-phone mr-2"></i>0942 841 758</a>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="feature-box">
+                                        <h6 class="font-weight-bold"><i class="fa-solid fa-couch"></i> Nội thất</h6>
+                                        <p class="small text-muted mb-0">Full đồ, tủ lạnh, máy giặt riêng, thang máy</p>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="feature-box">
+                                        <h6 class="font-weight-bold"><i class="fa-solid fa-file-invoice-dollar"></i> Chi phí</h6>
+                                        <ul class="small text-muted mb-0 pl-3">
+                                            <li>Điện: 4k/số</li>
+                                            <li>Nước: 30k/khối</li>
+                                            <li>Mạng: 100k/phòng</li>
+                                            <li>Dịch vụ chung: 160k/người</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="col-12 mt-2">
+                                    <div class="feature-box border-danger" style="background: #fef2f2;">
+                                        <h6 class="font-weight-bold text-danger"><i class="fa-solid fa-circle-exclamation text-danger"></i> Lưu ý quan trọng</h6>
+                                        <ul class="small text-muted mb-0 pl-3">
+                                            <li>Oto đỗ cửa</li>
+                                            <li>Nhận xe điện: 100k/xe (xe thường), 500k/xe (xanh SM)</li>
+                                            <li>Free 2 xe. Xe thứ 3: 80k/xe</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="d-flex gap-3 mt-4 pt-3 border-top">
+                                <a href="tel:0942841758" class="btn btn-gradient flex-grow-1 py-3"><i class="fa-solid fa-phone mr-2"></i>Gọi Ngay: 0942 841 758</a>
                                 <a href="https://zalo.me/0942841758" target="_blank" class="btn btn-primary py-3 px-4" style="border-radius: 12px; background: #0068ff; border: none;">Zalo</a>
                             </div>
                         </div>
@@ -257,7 +301,160 @@
             </div>
         </div>
     </div>
-
+    
+    <div class="modal fade" id="modalXD" tabindex="-1">
+        <div class="modal-dialog modal-xl modal-dialog-centered modal-dialog-scrollable">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+                <div class="modal-body p-0">
+                    <div class="row no-gutters">
+                        <div class="col-lg-5 p-4 bg-light">
+                            <h5 class="font-weight-bold mb-3">Hình ảnh chi tiết</h5>
+                            <div id="carouselXD" class="carousel slide modal-gallery" data-ride="carousel">
+                                <div class="carousel-inner shadow-sm">
+                                    <div class="carousel-item active">
+                                        <img src="xd/xd1.jpg" alt="Xã Đàn">
+                                    </div>
+                                    <div class="carousel-item">
+                                        <img src="xd/xd2.jpg" alt="Demo Room">
+                                    </div>
+                                </div>
+                                <a class="carousel-control-prev" href="#carouselXD" role="button" data-slide="prev">
+                                    <span class="carousel-control-prev-icon bg-dark rounded-circle" style="padding: 15px;" aria-hidden="true"></span>
+                                </a>
+                                <a class="carousel-control-next" href="#carouselXD" role="button" data-slide="next">
+                                    <span class="carousel-control-next-icon bg-dark rounded-circle" style="padding: 15px;" aria-hidden="true"></span>
+                                </a>
+                            </div>
+                        </div>
+                        
+                        <div class="col-lg-7 p-4 p-lg-5">
+                            <span class="badge badge-warning text-dark px-3 py-2 mb-3" style="border-radius: 8px;">Trống 5 phòng</span>
+                            <h2 class="font-weight-bold mb-2">Studio Gác Xép Hiện Đại</h2>
+                            <p class="text-muted mb-3"><i class="fa-solid fa-map-pin mr-2 text-primary"></i>2 Xã Đàn, Đống Đa</p>
+                            <p class="small text-muted mb-4">Gần đầu hầm Kim Liên (105 Kim Hoa), CV Thống Nhất, Đại học Bách - Kinh - Xây.</p>
+                            
+                            <div class="price mb-4" style="font-size: 2rem;">4.800.000 - 5.600.000đ <span>/tháng</span></div>
+                            
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="feature-box">
+                                        <h6 class="font-weight-bold"><i class="fa-solid fa-couch"></i> Nội thất</h6>
+                                        <p class="small text-muted mb-0">Full đồ, có gác xép tối ưu không gian, máy giặt riêng</p>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="feature-box">
+                                        <h6 class="font-weight-bold"><i class="fa-solid fa-file-invoice-dollar"></i> Chi phí</h6>
+                                        <ul class="small text-muted mb-0 pl-3">
+                                            <li>Điện: 4k/số</li>
+                                            <li>Nước: 35k/m³</li>
+                                            <li>Mạng: 100k/tháng</li>
+                                            <li>DV chung: 200k/phòng</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="col-12 mt-2">
+                                    <div class="feature-box border-danger" style="background: #fef2f2;">
+                                        <h6 class="font-weight-bold text-danger"><i class="fa-solid fa-circle-exclamation text-danger"></i> Lưu ý quan trọng</h6>
+                                        <ul class="small text-muted mb-0 pl-3">
+                                            <li>Giới hạn 2 xe</li>
+                                            <li>Ở tối đa 2-3 người</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="d-flex gap-3 mt-4 pt-3 border-top">
+                                <a href="tel:0942841758" class="btn btn-gradient flex-grow-1 py-3"><i class="fa-solid fa-phone mr-2"></i>Gọi Ngay: 0942 841 758</a>
+                                <a href="https://zalo.me/0942841758" target="_blank" class="btn btn-primary py-3 px-4" style="border-radius: 12px; background: #0068ff; border: none;">Zalo</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="modal fade" id="modalTT" tabindex="-1">
+        <div class="modal-dialog modal-xl modal-dialog-centered modal-dialog-scrollable">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+                <div class="modal-body p-0">
+                    <div class="row no-gutters">
+                        <div class="col-lg-5 p-4 bg-light">
+                            <h5 class="font-weight-bold mb-3">Hình ảnh chi tiết</h5>
+                            <div id="carouselTT" class="carousel slide modal-gallery" data-ride="carousel">
+                                <div class="carousel-inner shadow-sm">
+                                    <div class="carousel-item active">
+                                        <img src="tt/tt1.jpg" alt="Thái Thịnh">
+                                    </div>
+                                    <div class="carousel-item">
+                                        <img src="tt/tt2.jpg" alt="Demo">
+                                    </div>
+                                </div>
+                                <a class="carousel-control-prev" href="#carouselTT" role="button" data-slide="prev">
+                                    <span class="carousel-control-prev-icon bg-dark rounded-circle" style="padding: 15px;" aria-hidden="true"></span>
+                                </a>
+                                <a class="carousel-control-next" href="#carouselTT" role="button" data-slide="next">
+                                    <span class="carousel-control-next-icon bg-dark rounded-circle" style="padding: 15px;" aria-hidden="true"></span>
+                                </a>
+                            </div>
+                        </div>
+                        
+                        <div class="col-lg-7 p-4 p-lg-5">
+                            <span class="badge badge-danger px-3 py-2 mb-3" style="border-radius: 8px;">Nhiều mức giá</span>
+                            <h2 class="font-weight-bold mb-2">Phòng Trọ Tiện Nghi Full Đồ</h2>
+                            <p class="text-muted mb-3"><i class="fa-solid fa-map-pin mr-2 text-primary"></i>Ngõ 51 Thái Thịnh, Đống Đa</p>
+                            <p class="small text-muted mb-4">Gần mặt đường Thái Thịnh, Ngã Tư Sở, Yên Lãng. Gần ĐH Thủy Lợi, Công Đoàn, Ngân Hàng...</p>
+                            
+                            <div class="price mb-2" style="font-size: 1.5rem;">P.304 (Tòa 1): 5.200.000đ <span>/tháng</span></div>
+                            <div class="price mb-2" style="font-size: 1.5rem;">P.403 & 501 (Tòa 2): 5.000.000đ <span>/tháng</span></div>
+                            <div class="price mb-4" style="font-size: 1.5rem;">P.705 (Tòa 2): 4.700.000đ <span>/tháng</span></div>
+                            
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="feature-box">
+                                        <h6 class="font-weight-bold"><i class="fa-solid fa-couch"></i> Nội thất</h6>
+                                        <p class="small text-muted mb-0">Full đồ, máy giặt sấy chung, có thang máy</p>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="feature-box">
+                                        <h6 class="font-weight-bold"><i class="fa-solid fa-file-invoice-dollar"></i> Chi phí</h6>
+                                        <ul class="small text-muted mb-0 pl-3">
+                                            <li>Điện: 4k/số</li>
+                                            <li>Nước: 32k/m³</li>
+                                            <li>Mạng: 100k/tháng</li>
+                                            <li>DV chung: 200k/người</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="col-12 mt-2">
+                                    <div class="feature-box border-danger" style="background: #fef2f2;">
+                                        <h6 class="font-weight-bold text-danger"><i class="fa-solid fa-circle-exclamation text-danger"></i> Lưu ý quan trọng</h6>
+                                        <ul class="small text-muted mb-0 pl-3">
+                                            <li>Giới hạn 2 xe</li>
+                                            <li>Ở tối đa 2-3 người</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="d-flex gap-3 mt-4 pt-3 border-top">
+                                <a href="tel:0942841758" class="btn btn-gradient flex-grow-1 py-3"><i class="fa-solid fa-phone mr-2"></i>Gọi Ngay: 0942 841 758</a>
+                                <a href="https://zalo.me/0942841758" target="_blank" class="btn btn-primary py-3 px-4" style="border-radius: 12px; background: #0068ff; border: none;">Zalo</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
     <div class="floating-group">
         <a href="tel:0942841758" class="float-btn call"><i class="fa-solid fa-phone"></i></a>
         <a href="https://zalo.me/0942841758" target="_blank" class="float-btn zalo"><i class="fa-solid fa-comment-dots"></i></a>
@@ -279,6 +476,7 @@
                         <li><a href="listings.html">Tìm phòng</a></li>
                         <li><a href="about.html">Về chúng tôi</a></li>
                         <li><a href="reviews.html">Đánh giá</a></li>
+                        <li><a href="blog.html">Tin tức</a></li>
                     </ul>
                 </div>
                 <div class="col-lg-4 col-md-6 mb-5">
@@ -310,10 +508,12 @@
         $('#btn-list').click(function() {
             $(this).addClass('active'); $('#btn-grid').removeClass('active');
             $('#property-container').addClass('list-view'); $('.item-col').removeClass('col-md-6').addClass('col-12');
+            AOS.refresh();
         });
         $('#btn-grid').click(function() {
             $(this).addClass('active'); $('#btn-list').removeClass('active');
             $('#property-container').removeClass('list-view'); $('.item-col').removeClass('col-12').addClass('col-md-6');
+            AOS.refresh();
         });
     </script>
 </body>
